@@ -29,7 +29,7 @@ const Dashboard = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6 text-center">Public Wellness Sessions</h1>
-      {sessions.length === 0 ? (
+      {sessions?.length === 0 ? (
         <div className="text-center text-gray-500">No public sessions found.</div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
