@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { useAuth } from '../contexts/AuthContext';
 
 const SessionView = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { isAuthenticated, loading: authLoading } = useAuth();
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    if (!id || !isAuthenticated) return;
     const fetchSession = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`https://wellness-platform-786k.vercel.app/api/sessions/${id}`);
+        const res = await axios.get(`https://wellness-platform-786k.vercel.app/api/sessions/${id}`,
+          { withCredentials: true }
+        );
         setSession(res.data.data);
       } catch (err) {
         setError('Failed to load session.');
@@ -22,7 +32,7 @@ const SessionView = () => {
       }
     };
     fetchSession();
-  }, [id]);
+  }, [id, isAuthenticated, authLoading, navigate]);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <div className="text-red-600 text-center mt-8">{error}</div>;
