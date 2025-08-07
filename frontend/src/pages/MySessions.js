@@ -33,7 +33,13 @@ const MySessions = () => {
       await axios.post('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions/publish', { sessionId }, { withCredentials: true });
       await fetchSessions();
     } catch (err) {
-      alert('Failed to publish session.');
+      if (err.response) {
+        console.error('Publish error:', err.response.status, err.response.data);
+        alert(`Failed to publish session. Server responded with: ${err.response.status} ${err.response.data?.message || ''}`);
+      } else {
+        console.error('Publish error:', err);
+        alert('Failed to publish session.');
+      }
     } finally {
       setPublishing(null);
     }
