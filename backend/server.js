@@ -30,21 +30,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // CORS configuration
-const allowedOrigins = [
-  'https://wellness-platform-fxtx.vercel.app',
-  'https://wellness-platform-fxtx-oo08v8www-pathakv586-gmailcoms-projects.vercel.app',
-  'https://wellness-platform-fxtx-git-main-pathakv586-gmailcoms-projects.vercel.app'
-];
-
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true); // Allow request
-    } else {
-      callback(new Error('Not allowed by CORS')); // Block request
-    }
-  },
-  credentials: true
+  origin: true,            // Dynamically reflect origin
+  credentials: true        // Allow cookies / auth headers
 }));
 
 // Routes
