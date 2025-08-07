@@ -14,7 +14,7 @@ const MySessions = () => {
   const fetchSessions = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions');
+      const res = await axios.get('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions', { withCredentials: true });
       setSessions(res.data.data);
     } catch (err) {
       setError('Failed to load your sessions.');
@@ -30,7 +30,7 @@ const MySessions = () => {
   const handlePublish = async (sessionId) => {
     setPublishing(sessionId);
     try {
-      await axios.post('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions/publish', { sessionId });
+      await axios.post('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions/publish', { sessionId }, { withCredentials: true });
       await fetchSessions();
     } catch (err) {
       alert('Failed to publish session.');
