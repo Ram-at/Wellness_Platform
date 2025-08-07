@@ -31,7 +31,7 @@ app.use(cookieParser());
 
 // CORS configuration
 app.use(cors({
-  origin: true,            // Dynamically reflect origin
+  origin: "https://wellness-platform-fxtx.vercel.app",         
   credentials: true        // Allow cookies / auth headers
 }));
 
