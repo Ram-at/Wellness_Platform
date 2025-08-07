@@ -17,7 +17,13 @@ const MySessions = () => {
       const res = await axios.get('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions', { withCredentials: true });
       setSessions(res.data.data);
     } catch (err) {
-      setError('Failed to load your sessions.');
+      if (err.response) {
+        console.error('Fetch sessions error:', err.response.status, err.response.data);
+        setError(`Failed to load your sessions. Server responded with: ${err.response.status} ${err.response.data?.message || ''}`);
+      } else {
+        console.error('Fetch sessions error:', err);
+        setError('Failed to load your sessions.');
+      }
     } finally {
       setLoading(false);
     }
