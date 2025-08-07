@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuthStatus = async () => {
     try {
-      const response = await axios.get('https://wellness-platform-786k.vercel.app/api/auth/me');
+      const response = await axios.get('https://wellness-platform-three.vercel.app/api/auth/me');
       if (response.data.success) {
         setUser(response.data.data);
       }
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     try {
       setError(null);
-      const response = await axios.post('https://wellness-platform-786k.vercel.app/api/auth/register', userData);
+      const response = await axios.post('https://wellness-platform-three.vercel.app/api/auth/register', userData);
       if (response.data.success) {
         setUser(response.data.data);
         return { success: true, data: response.data.data };
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     try {
       setError(null);
-      const response = await axios.post('https://wellness-platform-786k.vercel.app/api/auth/login', credentials);
+      const response = await axios.post('https://wellness-platform-three.vercel.app/api/auth/login', credentials);
       if (response.data.success) {
         setUser(response.data.data);
         return { success: true, data: response.data.data };
@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.post('https://wellness-platform-786k.vercel.app/api/auth/logout');
+      await axios.post('https://wellness-platform-three.vercel.app/api/auth/logout');
       setUser(null);
       setError(null);
     } catch (error) {

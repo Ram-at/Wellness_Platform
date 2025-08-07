@@ -21,7 +21,7 @@ const SessionView = () => {
     const fetchSession = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`https://wellness-platform-786k.vercel.app/api/sessions/${id}`,
+        const res = await axios.get(`https://wellness-platform-three.vercel.app/api/sessions/${id}`,
           { withCredentials: true }
         );
         setSession(res.data.data);

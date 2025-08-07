@@ -32,7 +32,7 @@ const SessionEditor = () => {
   useEffect(() => {
     isMounted.current = true;
     if (id) {
-      axios.get(`https://wellness-platform-786k.vercel.app/api/sessions/my-sessions/${id}`)
+      axios.get(`https://wellness-platform-three.vercel.app/api/sessions/my-sessions/${id}`)
         .then(res => {
           const s = res.data.data;
           setSession({
@@ -77,7 +77,7 @@ const SessionEditor = () => {
         tags: session.tags,
         sessionId: id,
       };
-      const res = await axios.post('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions/save-draft', payload);
+      const res = await axios.post('https://wellness-platform-three.vercel.app/api/sessions/my-sessions/save-draft', payload);
       if (res.data.success) {
         setLastSaved(new Date());
         if (!id && res.data.data._id) {
@@ -98,7 +98,7 @@ const SessionEditor = () => {
       let sessionId = id;
       // If new, save draft first
       if (!id) {
-        const res = await axios.post('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions/save-draft', session);
+        const res = await axios.post('https://wellness-platform-three.vercel.app/api/sessions/my-sessions/save-draft', session);
         if (res.data.success && res.data.data._id) {
           sessionId = res.data.data._id;
         } else {
@@ -107,7 +107,7 @@ const SessionEditor = () => {
           return;
         }
       }
-      await axios.post('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions/publish', { sessionId });
+      await axios.post('https://wellness-platform-three.vercel.app/api/sessions/my-sessions/publish', { sessionId });
       navigate('/my-sessions');
     } catch (err) {
       setError('Failed to publish session.');

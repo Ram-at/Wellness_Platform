@@ -14,7 +14,7 @@ const MySessions = () => {
   const fetchSessions = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions', { withCredentials: true });
+      const res = await axios.get('https://wellness-platform-three.vercel.app/api/sessions/my-sessions', { withCredentials: true });
       setSessions(res.data.data);
     } catch (err) {
       if (err.response) {
@@ -36,7 +36,7 @@ const MySessions = () => {
   const handlePublish = async (sessionId) => {
     setPublishing(sessionId);
     try {
-      await axios.post('https://wellness-platform-786k.vercel.app/api/sessions/my-sessions/publish', { sessionId }, { withCredentials: true });
+      await axios.post('https://wellness-platform-three.vercel.app/api/sessions/my-sessions/publish', { sessionId }, { withCredentials: true });
       await fetchSessions();
     } catch (err) {
       if (err.response) {

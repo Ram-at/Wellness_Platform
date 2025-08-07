@@ -12,7 +12,7 @@ const Dashboard = () => {
     const fetchSessions = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('https://wellness-platform-786k.vercel.app/api/sessions');
+        const res = await axios.get('https://wellness-platform-three.vercel.app/api/sessions');
         setSessions(res.data.data);
       } catch (err) {
         setError('Failed to load sessions.');
