@@ -13,7 +13,7 @@ const SessionView = () => {
     const fetchSession = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`/api/sessions/${id}`);
+        const res = await axios.get(`https://wellness-platform-three.vercel.app/api/sessions/${id}`);
         setSession(res.data.data);
       } catch (err) {
         setError('Failed to load session.');
