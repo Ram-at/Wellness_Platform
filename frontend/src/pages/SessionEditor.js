@@ -26,6 +26,7 @@ const SessionEditor = () => {
   const [lastSaved, setLastSaved] = useState(null);
   const saveTimeout = useRef(null);
   const isMounted = useRef(true);
+    axios.defaults.withCredentials = true;
 
   // Fetch session if editing
   useEffect(() => {
